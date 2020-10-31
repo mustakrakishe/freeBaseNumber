@@ -49,7 +49,7 @@ echo $num->incVal(29);                  //49
 ```php
 $chars = range(0, 7);                   //[0, 1, 2, 3, 4, 5, 6, 7]
 $num = new FreeBaseNumber(0, $chars);
-echo $num->getVal();                    //0
+echo $num->getVal() . '<br>';           //0
 echo $num->incVal(10);                  //012
 
 $chars = array_merge(
@@ -74,6 +74,6 @@ while(sha1($pass->getVal()) !== $hash){
     $pass->incVal();
 }
 
-echo 'A hash is: ' . $hash . '<br>';    //2947b1700c60173ef4da345b2e46641c91168984
-echo 'A pass is: ' . $pass->getVal();   //9G8a
+echo 'A hash is: ' . $hash . '<br>';    //A hash is: 2947b1700c60173ef4da345b2e46641c91168984
+echo 'A pass is: ' . $pass->getVal();   //A pass is: 9G8a
 ```
