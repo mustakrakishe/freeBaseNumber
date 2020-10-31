@@ -49,7 +49,7 @@ echo $num->incVal(29);                  //49
 ```php
 $chars = range(0, 7);                   //[0, 1, 2, 3, 4, 5, 6, 7]
 $num = new FreeBaseNumber(0, $chars);
-echo $num->getVal() . '<br>';           //0
+echo $num->getVal();                    //0
 echo $num->incVal(10);                  //012
 
 $chars = array_merge(
@@ -59,7 +59,7 @@ $chars = array_merge(
   ['#', '.']
 );                                        //[2, 3, 4, 5, '!', 'a', 'b', 'c', '#', '.']
 $num = new FreeBaseNumber('2#c', $chars);
-echo $num->getVal() . '<br>';             //2#c
+echo $num->getVal();                      //2#c
 echo $num->incVal(55);                    //3!4
 ```
 
