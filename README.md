@@ -27,9 +27,9 @@ FreeBaseNumber{
 *valueDigitIds* - a value digits, represented as a *availableChars* array indexies.
 
 ## Methods
-*__construct($initValue = 0, $availableChars = false)* - creates a class instance.<br>
+*__construct($initValue, $availableChars)* - creates a class instance.<br>
 *getVal()* - returns a number current value.<br>
-*incVal($step = 1)* - increments a number by *step* and returns a number incremented value.<br>
+*incVal($step)* - increments a number by *step* and returns a number incremented value.<br>
 *incDigit($digitId, $step)* - increments a number digit with index *digitId* by *step* and check if the current digit doesn't exceed a max limit.
 
 ## Examples
