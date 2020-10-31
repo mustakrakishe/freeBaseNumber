@@ -36,21 +36,21 @@ FreeBaseNumber{
 ### Example #1 A decimal number
 ```php
 $num = new FreeBaseNumber()
-echo $num->getVal();                    //0
-echo $num->incVal();                    //1
-echo $num->incVal(18);                  //19
+echo $num->getVal();                      //0
+echo $num->incVal();                      //1
+echo $num->incVal(18);                    //19
 
 $num = new FreeBaseNumber(20)
-echo $num->getVal();                    //20
-echo $num->incVal(29);                  //49
+echo $num->getVal();                      //20
+echo $num->incVal(29);                    //49
 ```
 
 ### Example #2 A free-base number
 ```php
-$chars = range(0, 7);                   //[0, 1, 2, 3, 4, 5, 6, 7]
+$chars = range(0, 7);                     //[0, 1, 2, 3, 4, 5, 6, 7]
 $num = new FreeBaseNumber(0, $chars);
-echo $num->getVal();                    //0
-echo $num->incVal(10);                  //012
+echo $num->getVal();                      //0
+echo $num->incVal(10);                    //012
 
 $chars = array_merge(
   range(2, 5),
@@ -74,6 +74,6 @@ while(sha1($pass->getVal()) !== $hash){
     $pass->incVal();
 }
 
-echo 'A hash is: ' . $hash . '<br>';    //A hash is: 2947b1700c60173ef4da345b2e46641c91168984
-echo 'A pass is: ' . $pass->getVal();   //A pass is: 9G8a
+echo 'A hash is: ' . $hash . '<br>';      //A hash is: 2947b1700c60173ef4da345b2e46641c91168984
+echo 'A pass is: ' . $pass->getVal();     //A pass is: 9G8a
 ```
