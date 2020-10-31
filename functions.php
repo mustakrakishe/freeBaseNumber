@@ -36,10 +36,11 @@
 
         public function incVal($step = 1){
             $lastDigitId = count($this->valueDigitIds) - 1;
-            return $this->incDigit($lastDigitId, $step);
+            $this->incDigit($lastDigitId, $step);
+            return $this->getVal();
         }
 
-        public function incDigit($digitId, $step){
+        private function incDigit($digitId, $step){
             $this->valueDigitIds[$digitId] += $step;
 
             if($this->valueDigitIds[$digitId] > $this->base - 1){
@@ -54,7 +55,5 @@
                     $this->incDigit(0, $preDigitIncStep);
                 }
             }
-
-            return $this->getVal();
         }
     }
