@@ -14,7 +14,7 @@ FreeBaseNumber{
   private array $valueDigitIds;
   
   /* Methods */
-  public __construct([int $initValue = 0[, $array availableChars = false]]) : Object
+  public __construct([int|str $initValue = 0 [, array $availableChars = false]]) : Object
   public getVal() : string
   public incVal([int $step = 1]) : string
   private incDigit(int $digitId, int $step) : void
@@ -74,6 +74,6 @@ while(sha1($pass->getVal()) !== $hash){
     $pass->incVal();
 }
 
-echo 'A hash is: ' . $hash . '<br>';      //A hash is: 2947b1700c60173ef4da345b2e46641c91168984
-echo 'A pass is: ' . $pass->getVal();     //A pass is: 9G8a
+echo 'HASH: ' . $hash . '<br>';      //HASH: 2947b1700c60173ef4da345b2e46641c91168984
+echo 'PASS: ' . $pass->getVal();     //PASS: 9G8a
 ```
