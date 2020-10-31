@@ -5,8 +5,8 @@
         private $valueDigitIds;
 
 
-        public function __construct($initValue = 0, $availableChars = false){
-            if($availableChars === false){
+        public function __construct($availableChars = null, $initValue = null){
+            if($availableChars === null){
                 $this->availableChars = range(0, 9);
             }
             else{
@@ -17,11 +17,19 @@
                 );
             }
 
-            $this->valueDigitIds = array_map(function($char){
-                    return array_search($char, $this->availableChars);
-                },
-                str_split($initValue)
-            );
+            $pattern = '|[^' . implode('', $availableChars) . ']|';
+            
+            if($initValue !== null && !preg_match($pattern, $initValue)){
+                $this->valueDigitIds = array_map(
+                    function($char){
+                        return array_search($char, $this->availableChars);
+                    },
+                    str_split($initValue)
+                );
+            }
+            else{
+                $this->valueDigitIds = [$this->availableChars[0]];
+            }
 
             $this->base = count($this->availableChars);
         }
