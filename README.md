@@ -7,40 +7,29 @@ FreeBaseNumber should be used to create and work with a number of the free numer
 ## Class synopsis
 ```php
 FreeBaseNumber{
-
-  /* Properties */
-  private array $availableChars;
-  private int $base;
-  private array $valueDigitIds;
   
   /* Methods */
-  public __construct([int|str $initValue = 0 [, array $availableChars = false]]) : Object
+  public __construct([ array $availableChars = null [, int|string $initValue = null]]) : Object
   public getVal() : string
   public incVal([int $step = 1]) : string
-  private incDigit(int $digitId, int $step) : void
 }
 ```
 
-## Properties
-*availableChars* - an available charset for number creating.<br>
-*base* - a base of the class instance.<br>
-*valueDigitIds* - a value digits, represented as a *availableChars* array indexies.
-
 ## Methods
-*__construct($initValue, $availableChars)* - creates a class instance with an initial value *$initValue* and a charset *$availableChars*.<br>
+*__construct($availableChars $initValue)* - creates a class instance with an initial value *$initValue* and a charset *$availableChars*.<br>
 *getVal()* - returns a number current value.<br>
-*incVal($step)* - increments a number by *step* and returns a number incremented value.<br>
-*incDigit($digitId, $step)* - increments a number digit with index *digitId* by *step* and check if the current digit doesn't exceed a max limit.
+*incVal($step)* - increments a number by *step* and returns a number incremented value.
 
 ## Examples
 ### Example #1 A decimal number
 ```php
-$num = new FreeBaseNumber()
+$num = new FreeBaseNumber();
 echo $num->getVal();                      //0
 echo $num->incVal();                      //1
 echo $num->incVal(18);                    //19
 
-$num = new FreeBaseNumber(20)
+$chars = range(0, 9);
+$num = new FreeBaseNumber($chars, 20);
 echo $num->getVal();                      //20
 echo $num->incVal(29);                    //49
 ```
@@ -48,9 +37,9 @@ echo $num->incVal(29);                    //49
 ### Example #2 A free-base number
 ```php
 $chars = range(0, 7);                     //[0, 1, 2, 3, 4, 5, 6, 7]
-$num = new FreeBaseNumber(0, $chars);
+$num = new FreeBaseNumber($chars, 0);
 echo $num->getVal();                      //0
-echo $num->incVal(10);                    //012
+echo $num->incVal(10);                    //12
 
 $chars = array_merge(
   range(2, 5),
@@ -58,17 +47,18 @@ $chars = array_merge(
   range('a', 'c'),
   ['#', '.']
 );                                        //[2, 3, 4, 5, '!', 'a', 'b', 'c', '#', '.']
-$num = new FreeBaseNumber('2#c', $chars);
+$num = new FreeBaseNumber($chars, '2#c');
 echo $num->getVal();                      //2#c
 echo $num->incVal(55);                    //3!4
 ```
 
 ### Example #3 A hash decoder
+Note: Will not find, if a pass starts with 0.
 ```php
 $hash = sha1('9G8a');
 
 $chars = array_merge(range(0, 9), range('A', 'z'));
-$pass = new FreeBaseNumber(0, $chars);
+$pass = new FreeBaseNumber($chars);
 
 while(sha1($pass->getVal()) !== $hash){
     $pass->incVal();
