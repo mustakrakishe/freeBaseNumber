@@ -1,8 +1,8 @@
 <?php
     class FreeBaseNumber{
-        private $availableChars;
-        private $base;
-        private $valueDigitIds;
+        protected $availableChars;
+        protected $base;
+        protected $valueDigitIds;
 
 
         public function __construct($availableChars = null, $initValue = null){
@@ -17,8 +17,8 @@
                 );
             }
 
-            $pattern = '|[^' . implode('', $availableChars) . ']|';
-            
+            $pattern = '|[^' . implode('', $this->availableChars) . ']|';
+
             if($initValue !== null && !preg_match($pattern, $initValue)){
                 $this->valueDigitIds = array_map(
                     function($char){
@@ -48,7 +48,7 @@
             return $this->getVal();
         }
 
-        private function incDigit($digitId, $step){
+        protected function incDigit($digitId, $step){
             $this->valueDigitIds[$digitId] += $step;
 
             if($this->valueDigitIds[$digitId] > $this->base - 1){
@@ -61,6 +61,25 @@
                 else{
                     $this->valueDigitIds = array_merge([0], $this->valueDigitIds);
                     $this->incDigit(0, $preDigitIncStep);
+                }
+            }
+        }
+    }
+
+    class FreeBasePass extends FreeBaseNumber {
+        protected function incDigit($digitId, $step){
+            $this->valueDigitIds[$digitId] += $step;
+
+            if($this->valueDigitIds[$digitId] > $this->base - 1){
+                $preDigitIncStep = intdiv($this->valueDigitIds[$digitId], $this->base);
+                $this->valueDigitIds[$digitId] = $this->valueDigitIds[$digitId] % $this->base;
+
+                if($digitId != 0){
+                    $this->incDigit($digitId - 1, $preDigitIncStep);
+                }
+                else{
+                    $this->valueDigitIds = array_merge([0], $this->valueDigitIds);
+                    $this->incDigit(0, $preDigitIncStep-1);
                 }
             }
         }
