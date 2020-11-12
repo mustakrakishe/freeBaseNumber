@@ -51,7 +51,7 @@ $num = new FreeBaseNumber($chars, '2#c');
 echo $num->getVal();                      //2#c
 echo $num->incVal(55);                    //3!4
 ```
-## Example #3 A class FreeBasePass extends FreeBaseNumber
+### Example #3 A class FreeBasePass extends FreeBaseNumber
 ```php
 $chars = array_merge(range(0, 9));
 
