@@ -77,8 +77,9 @@ $hash = sha1('9G8a');
 $chars = array_merge(range(0, 9), range('A', 'z'));
 $pass = new FreeBasePass($chars);
 
-while(sha1($pass->getVal()) !== $hash){
-    $pass->incVal();
+if(sha1($pass->getVal()) !== $hash){
+    while(sha1($pass->incVal()) !== $hash){
+    }
 }
 
 echo 'HASH: ' . $hash . '<br>';      //HASH: 2947b1700c60173ef4da345b2e46641c91168984
