@@ -42,10 +42,10 @@ echo $num->getVal();                      //0
 echo $num->incVal(10);                    //12
 
 $chars = array_merge(
-  range(2, 5),
-  ['!'],
-  range('a', 'c'),
-  ['#', '.']
+    range(2, 5),
+    ['!'],
+    range('a', 'c'),
+    ['#', '.']
 );                                        //[2, 3, 4, 5, '!', 'a', 'b', 'c', '#', '.']
 $num = new FreeBaseNumber($chars, '2#c');
 echo $num->getVal();                      //2#c
@@ -55,19 +55,19 @@ echo $num->incVal(55);                    //3!4
 ```php
 $chars = array_merge(range(0, 9));
 
-    $num = new FreeBaseNumber($chars);
-    echo $num->getVal();
-    for($i = 1; $i < 15; $i++){
-        echo ' ' . $num->incVal();
-    }                                     //0 1 2 3 4 5 6 7 8 9 10 11 12 13 14
+$num = new FreeBaseNumber($chars);
+echo $num->getVal();
+for($i = 1; $i < 15; $i++){
+    echo ' ' . $num->incVal();
+}                                     //0 1 2 3 4 5 6 7 8 9 10 11 12 13 14
 
-    echo '<br>';
-    
-    $pass = new FreeBasePass($chars);
-    echo $pass->getVal();
-    for($i = 1; $i < 15; $i++){
-        echo ' ' . $pass->incVal();
-    }                                     //0 1 2 3 4 5 6 7 8 9 00 01 02 03 04
+echo '<br>';
+
+$pass = new FreeBasePass($chars);
+echo $pass->getVal();
+for($i = 1; $i < 15; $i++){
+    echo ' ' . $pass->incVal();
+}                                     //0 1 2 3 4 5 6 7 8 9 00 01 02 03 04
 ```
 
 ### Example #4 A hash decoder
